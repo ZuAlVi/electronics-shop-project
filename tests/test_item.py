@@ -18,3 +18,8 @@ def test_item_init(item_fixture):
 
 def test_item_calculate_total_price(item_fixture):
     assert item_fixture.calculate_total_price() == 80000
+
+
+def test_item_apply_discount(item_fixture):
+    item_fixture.apply_discount()
+    assert item_fixture.price == 32000
