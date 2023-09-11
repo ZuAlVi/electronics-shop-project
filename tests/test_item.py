@@ -1,1 +1,25 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
+import pytest
+
+from src.item import Item
+
+
+@pytest.fixture
+def item_fixture():
+    return Item('Смартфон Samsung', 40000, 2)
+
+
+def test_item_init(item_fixture):
+    assert item_fixture.name == 'Смартфон Samsung'
+    assert item_fixture.price == 40000
+    assert item_fixture.quantity == 2
+    assert len(Item.all) == 1
+
+
+def test_item_calculate_total_price(item_fixture):
+    assert item_fixture.calculate_total_price() == 80000
+
+
+def test_item_apply_discount(item_fixture):
+    item_fixture.apply_discount()
+    assert item_fixture.price == 32000
