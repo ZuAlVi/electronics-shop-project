@@ -14,3 +14,7 @@ def test_item_init(item_fixture):
     assert item_fixture.price == 40000
     assert item_fixture.quantity == 2
     assert len(Item.all) == 1
+
+
+def test_item_calculate_total_price(item_fixture):
+    assert item_fixture.calculate_total_price() == 80000
