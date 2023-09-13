@@ -23,3 +23,11 @@ def test_item_calculate_total_price(item_fixture):
 def test_item_apply_discount(item_fixture):
     item_fixture.apply_discount()
     assert item_fixture.price == 32000
+
+
+def test_item_name(item_fixture):
+    item_fixture.name = 'Телевизор Sony'
+    assert item_fixture.name == 'Телевизор '
+    item_fixture.name = 'Sony'
+    assert item_fixture.name == 'Sony'
+
