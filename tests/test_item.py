@@ -31,3 +31,7 @@ def test_item_name(item_fixture):
     item_fixture.name = 'Sony'
     assert item_fixture.name == 'Sony'
 
+
+def test_item_string_to_number():
+    assert Item.string_to_number('93') == 93
+    assert Item.string_to_number('567.015') == 567
