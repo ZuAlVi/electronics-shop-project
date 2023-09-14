@@ -53,7 +53,7 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, path):
         """Класс метод производит инициализацию экземпляров класса
-        из файлов .csv и добавляет их в аттрибут класса all"""
+        из файлов .csv"""
         Item.all = []
         path = f'../{path}'
         with open(path, newline='') as csvfile:
