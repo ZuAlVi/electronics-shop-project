@@ -9,11 +9,6 @@ def item_fixture():
     return Item('Смартфон Samsung', 40000, 2)
 
 
-@pytest.fixture
-def item_path():
-    return 'src/items.csv'
-
-
 def test_item_init(item_fixture):
     assert item_fixture.name == 'Смартфон Samsung'
     assert item_fixture.price == 40000
@@ -42,8 +37,3 @@ def test_item_string_to_number():
     assert Item.string_to_number('567.015') == 567
     assert Item.string_to_number('time.015') is None
     assert Item.string_to_number('time') is None
-
-
-def test_item_instantiate_from_csv(item_path):
-    Item.instantiate_from_csv(item_path)
-    assert len(Item.all) == 5

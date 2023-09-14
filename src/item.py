@@ -1,3 +1,6 @@
+import csv
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -45,9 +48,30 @@ class Item:
         """
         self.price *= Item.pay_rate
 
+    @classmethod
+    def instantiate_from_csv(cls, path):
+        """Класс метод производит инициализацию экземпляров класса
+        из файлов .csv и добавляет их в аттрибут класса all"""
+        Item.all = []
+        path = f'../{path}'
+        with open(path, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                name = row['name']
+                price = Item.string_to_number(row['price'])
+                quantity = Item.string_to_number(row['quantity'])
+                Item(name, price, quantity)
 
-# a = Item('Самсунг', 10000, 1)
-# print(a.name)
-# a.name = 'Супер телевизор Самсунг'
-# print(a.name)
-#
+    @staticmethod
+    def string_to_number(string: str):
+        """Статик метод принимающий на вход строку.
+        Если строка состоит из цифр, возвращает число.
+        Иначе None"""
+        if '.' in string:
+            temp = string[:string.find('.')]
+            if temp.isdigit():
+                return int(temp)
+            return None
+        elif string.isdigit():
+            return int(string)
+
