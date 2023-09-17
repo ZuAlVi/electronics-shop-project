@@ -42,3 +42,7 @@ def test_item_string_to_number():
 def test_instantiate_from_csv():
     Item.instantiate_from_csv('../src/items.csv')
     assert len(Item.all) == 5
+
+
+def test_item_repr(item_fixture):
+    assert repr(item_fixture) == "Item('Смартфон Samsung', 40000, 2)"
