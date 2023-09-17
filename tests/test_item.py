@@ -46,3 +46,7 @@ def test_instantiate_from_csv():
 
 def test_item_repr(item_fixture):
     assert repr(item_fixture) == "Item('Смартфон Samsung', 40000, 2)"
+
+
+def test_item_str(item_fixture):
+    assert str(item_fixture) == 'Смартфон Samsung'
