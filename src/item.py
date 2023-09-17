@@ -22,6 +22,9 @@ class Item:
 
         Item.all.append(self)
 
+    def __repr__(self):
+        return f"Item('{self.__name}', {self.price}, {self.quantity})"
+
     @property
     def name(self):
         """Геттер приватного атрибута __name"""
