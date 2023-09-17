@@ -55,7 +55,6 @@ class Item:
         """Класс метод производит инициализацию экземпляров класса
         из файлов .csv"""
         Item.all = []
-        path = f'../{path}'
         with open(path, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:

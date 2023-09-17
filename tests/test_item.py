@@ -37,3 +37,8 @@ def test_item_string_to_number():
     assert Item.string_to_number('567.015') == 567
     assert Item.string_to_number('time.015') is None
     assert Item.string_to_number('time') is None
+
+
+def test_instantiate_from_csv():
+    Item.instantiate_from_csv('../src/items.csv')
+    assert len(Item.all) == 5
