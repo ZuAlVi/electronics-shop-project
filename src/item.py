@@ -23,9 +23,11 @@ class Item:
         Item.all.append(self)
 
     def __repr__(self):
-        return f"Item('{self.__name}', {self.price}, {self.quantity})"
+        """Метод возвращает информацию для разработчиков."""
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __str__(self):
+        """Метод возвращает информацию для пользователя."""
         return self.__name
 
     @property
