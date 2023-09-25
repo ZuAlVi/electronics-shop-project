@@ -30,6 +30,12 @@ class Item:
         """Метод возвращает информацию для пользователя."""
         return self.__name
 
+    def __add__(self, other):
+        """Метод позволяет складывать экземпляры классов Item и Phone по атрибуту quantity."""
+        from src.phone import Phone
+        if isinstance(self, (Item, Phone)) and isinstance(other, (Item, Phone)):
+            return int(self.quantity) + int(other.quantity)
+
     @property
     def name(self):
         """Геттер приватного атрибута __name"""
