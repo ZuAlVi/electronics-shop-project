@@ -2,7 +2,14 @@ from src.item import Item
 
 
 class SwitchLanguageMixin:
-    pass
+
+    def change_lang(self):
+        """Метод позволяет изменять значение защищенного
+        атрибута language c 'EN' на 'RU' и наоборот."""
+        if self.language == 'EN':
+            self._language = 'RU'
+        else:
+            self._language = 'EN'
 
 
 class Keyboard(Item, SwitchLanguageMixin):
