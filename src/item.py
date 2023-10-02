@@ -1,5 +1,7 @@
 import csv
 
+from src.errors import InstantiateCSVError
+
 
 class Item:
     """
@@ -65,17 +67,27 @@ class Item:
         self.price *= Item.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls, path):
+    def instantiate_from_csv(cls, path='../src/items.csv'):
         """Класс метод производит инициализацию экземпляров класса
         из файлов .csv"""
         Item.all = []
-        with open(path, newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                name = row['name']
-                price = Item.string_to_number(row['price'])
-                quantity = Item.string_to_number(row['quantity'])
-                Item(name, price, quantity)
+        try:
+            with open(path, newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                len_reader = len(reader.fieldnames)
+                if len_reader != 3:
+                    raise InstantiateCSVError
+                for row in reader:
+                    name = row['name']
+                    price = Item.string_to_number(row['price'])
+                    quantity = Item.string_to_number(row['quantity'])
+                    Item(name, price, quantity)
+        except InstantiateCSVError as error:
+            print(error.message)
+            raise
+        except FileNotFoundError:
+            print('FileNotFoundError: Отсутствует файл item.csv')
+            raise
 
     @staticmethod
     def string_to_number(string: str):
@@ -90,3 +102,4 @@ class Item:
         elif string.isdigit():
             return int(string)
 
+# Item.instantiate_from_csv()
