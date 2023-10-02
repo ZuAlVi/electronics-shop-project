@@ -69,7 +69,7 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, path='../src/items.csv'):
         """Класс метод производит инициализацию экземпляров класса
-        из файлов .csv"""
+        из файлов .csv. Если файл не найден или поврежден выводится сообщение."""
         Item.all = []
         try:
             with open(path, newline='') as csvfile:
@@ -84,10 +84,10 @@ class Item:
                     Item(name, price, quantity)
         except InstantiateCSVError as error:
             print(error.message)
-            raise
+            raise  # для проверки через pytest.raises
         except FileNotFoundError:
             print('FileNotFoundError: Отсутствует файл item.csv')
-            raise
+            raise  # для проверки через pytest.raises
 
     @staticmethod
     def string_to_number(string: str):
