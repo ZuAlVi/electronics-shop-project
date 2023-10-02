@@ -1,2 +1,3 @@
-
+class InstantiateCSVError(Exception):
+    pass
 
